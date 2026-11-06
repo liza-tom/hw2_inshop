@@ -20,9 +20,18 @@ public class ProductBasket {
     public int getGeneralCost(){
         int sum = 0;
         for (int i = 0; i < count; i++) {
-            sum += basket[i].getCost();
+            sum += basket[i].getPrice();
         }
         return sum;
+    }
+    private int getSpecialCount() {
+        int special = 0;
+        for (int i = 0; i < count; i++) {
+            if (basket[i].isSpecial()) {
+                special++;
+            }
+        }
+        return special;
     }
     public void printBasket(){
         if (count == 0) {
@@ -33,6 +42,7 @@ public class ProductBasket {
             System.out.println(basket[i]);
         }
         System.out.println("Итого: " + getGeneralCost());
+        System.out.println("Специальных товаров: " + getSpecialCount());
     }
     public boolean containsProduct(String name){
         for (int i = 0; i < count; i++) {
