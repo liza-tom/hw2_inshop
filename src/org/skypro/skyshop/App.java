@@ -1,5 +1,8 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.article.SearchEngine;
+import org.skypro.skyshop.article.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
@@ -50,5 +53,46 @@ public class App {
 
         System.out.println("Search product in empty basket");
         System.out.println(basket.containsProduct("Bread"));
+
+        SearchEngine searcher = new SearchEngine(10);
+        searcher.add(bread);
+        searcher.add(milk);
+        searcher.add(cheese);
+        searcher.add(tea);
+        searcher.add(apple);
+        searcher.add(coffee);
+         Article milkArt = new Article("Milk", "the most healthy is 2,5");
+        System.out.println(milkArt.getContentType());
+        System.out.println(milkArt);
+        Article cheeseArt = new Article("Cheese", "the most delicious cheese for wine");
+        searcher.add(milkArt);
+        searcher.add(cheeseArt);
+        Article teaArt = new Article("The best tea", "Tea is... ");
+        searcher.add(teaArt);
+        Searchable[] result1 = searcher.search("Milk");
+        for (Searchable s : result1) {
+            if (s != null) {
+                System.out.println(s.getStringRepresentation());
+            }
+        }
+        Searchable[] result2 = searcher.search("Bread");
+        for (Searchable s : result2) {
+            if (s != null) {
+                System.out.println(s.getStringRepresentation());
+            }
+        }
+        Searchable[] result3 = searcher.search("null");
+        for (Searchable s : result3) {
+            if (s != null) {
+                System.out.println(s.getStringRepresentation());
+            }
+        }
+        Searchable[] result4 = searcher.search("Tea");
+        for (Searchable s : result4) {
+            if (s != null) {
+                System.out.println(s.getStringRepresentation());
+            }
+        }
+
     }
 }
